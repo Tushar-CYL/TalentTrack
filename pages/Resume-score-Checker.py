@@ -90,52 +90,55 @@
 
 
 
-
-
 from dotenv import load_dotenv
 load_dotenv()
 import base64
 import streamlit as st
 import os
 import io
-from PIL import Image 
-import pdf2image
+import PyPDF2
+from PIL import Image
 import google.generativeai as genai
 
 # Configure Gemini API
 GOOGLE_API_KEY = 'AIzaSyAhPdM6jGrv-CTRuI6tqOrd4qXmyObJnpY'  # Replace with your API key
 genai.configure(api_key=GOOGLE_API_KEY)
 
+def convert_pdf_to_image(pdf_file):
+    """Convert PDF to base64 encoded text content"""
+    try:
+        # Read PDF content
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
+        text_content = ""
+        
+        # Extract text from all pages
+        for page in pdf_reader.pages:
+            text_content += page.extract_text()
+
+        # Create a simple representation
+        pdf_parts = [
+            {
+                "mime_type": "text/plain",
+                "data": base64.b64encode(text_content.encode('utf-8')).decode()
+            }
+        ]
+        return pdf_parts, text_content
+    except Exception as e:
+        st.error(f"Error processing PDF: {str(e)}")
+        return None, None
+
 def get_gemini_response(input_prompt, pdf_content, job_desc):
     """Get response from Gemini model"""
     try:
-        model = genai.GenerativeModel('gemini-1.5-flash')
-        response = model.generate_content([input_prompt, pdf_content[0], job_desc])
+        model = genai.GenerativeModel('gemini-pro')
+        response = model.generate_content([
+            input_prompt,
+            f"Resume Content: {pdf_content}",
+            f"Job Description: {job_desc}"
+        ])
         return response.text
     except Exception as e:
         return f"Error in generating response: {str(e)}"
-
-def input_pdf_setup(uploaded_file):
-    """Convert uploaded PDF to image format that Gemini can process"""
-    try:
-        images = pdf2image.convert_from_bytes(uploaded_file.read())
-        first_page = images[0]
-
-        # Convert to bytes
-        img_byte_arr = io.BytesIO()
-        first_page.save(img_byte_arr, format='JPEG')
-        img_byte_arr = img_byte_arr.getvalue()
-
-        pdf_parts = [
-            {
-                "mime_type": "image/jpeg",
-                "data": base64.b64encode(img_byte_arr).decode()
-            }
-        ]
-        return pdf_parts
-    except Exception as e:
-        st.error(f"Error processing PDF: {str(e)}")
-        return None
 
 # Streamlit UI
 def main():
@@ -203,19 +206,23 @@ def main():
         match_button = st.button("📊 Check Match %", type="primary", use_container_width=True)
     
     # Process and display results
-    if uploaded_file and (analyze_button or match_button):
+    if uploaded_file is not None and (analyze_button or match_button):
         with st.spinner("Analyzing your resume..."):
-            pdf_content = input_pdf_setup(uploaded_file)
+            # Reset the file pointer to the beginning
+            uploaded_file.seek(0)
             
-            if pdf_content:
+            # Convert PDF to text content
+            pdf_parts, text_content = convert_pdf_to_image(uploaded_file)
+            
+            if text_content:
                 if analyze_button:
                     st.subheader("📋 Detailed Analysis")
-                    response = get_gemini_response(resume_analysis_prompt, pdf_content, job_description)
+                    response = get_gemini_response(resume_analysis_prompt, text_content, job_description)
                     st.markdown(response)
                     
                 elif match_button:
                     st.subheader("🎯 Match Analysis")
-                    response = get_gemini_response(match_analysis_prompt, pdf_content, job_description)
+                    response = get_gemini_response(match_analysis_prompt, text_content, job_description)
                     
                     # Try to extract percentage for progress bar
                     try:
@@ -236,10 +243,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-   
-
-
-
-
