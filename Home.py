@@ -50,7 +50,6 @@ st.markdown("""
     <p><i><u>**Step 3:** If you're a new user, complete all fields and confirm your domain to access the platform's features.</u></i></p>
     </div>
 """, unsafe_allow_html=True)
-st.page_link("pages/Login.py",  icon="👤")
 
 html3="""
 
