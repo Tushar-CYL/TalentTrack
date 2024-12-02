@@ -147,11 +147,11 @@ def main():
     # Images
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.image("./assets/Career *Isometric.png", use_column_width=True)
+        st.image("./assets/Career _Isometric.png", use_column_width=True)
     with col2:
         st.image("./assets/career.png", use_column_width=True)
     with col3:
-        st.image("./assets/Career *Outline.png", use_column_width=True)
+        st.image("./assets/Career _Outline.png", use_column_width=True)
     
     # Call to Action
     st.markdown("""
