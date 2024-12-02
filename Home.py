@@ -162,7 +162,7 @@ def main():
     
     # Introduction
     st.markdown("""
-        <div style="text-align:center; text-shadow: 3px 1px 2px purple;">
+        <div style="text-align:center; text-shadow: 3px 1px 2px white;">
           <h2>How to Use Aim🔎Seeker</h2>
           <p>This platform helps you in finding the right career path and job opportunities based on your skills and preferences.</p>
         </div>
@@ -170,7 +170,7 @@ def main():
     
     # Steps Explanation
     st.markdown("""
-        <div style="text-align:center; text-shadow: 3px 1px 2px purple;">
+        <div style="text-align:center; text-shadow: 3px 1px 2px white;">
         <p><i><u> **Step 1:** Begin by uploading your CV/Resume and confirming your domain expertise.</u></i></p><br>
        <p><i><u> **Step 2:** Once your domain is confirmed, you can search for companies relevant to your expertise.</u></i></p><br>
         <p><i><u>**Step 3:** If you're a new user, complete all fields and confirm your domain to access the platform's features.</u></i></p>
