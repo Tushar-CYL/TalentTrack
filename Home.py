@@ -83,7 +83,7 @@ import streamlit as st
 import time
 
 st.set_page_config(
-    page_title="Aim🔎Seeker",  # Title of the web app
+    page_title="Aim Seeker",  # Title of the web app
     page_icon="🔎",           # Icon in the browser tab
     layout="wide"             # Use a wide layout
 )
