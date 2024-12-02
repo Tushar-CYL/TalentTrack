@@ -40,6 +40,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.page_link("pages/New-User.py", icon="👩🏻‍🎓")
+st.page_link("pages/Resume-score-Checker.py", icon="📋")
 st.page_link("pages/About.py", icon="ℹ️")
 # Explanation
 
