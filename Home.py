@@ -290,7 +290,7 @@ def main():
     # Introduction
     st.markdown("""
         <div style="text-align:center;">
-          <h2>How to Use Aim🔎Seeker</h2>
+          <h2>Aim<span>&#x1F50E;</span>Seeker</h2>
           <p>This platform helps you in finding the right career path and job opportunities based on your skills and preferences.</p>
         </div>
     """, unsafe_allow_html=True)
