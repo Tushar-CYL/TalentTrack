@@ -307,7 +307,7 @@ def main():
     # Footer
     st.markdown("""
         <div style="color:yellow; margin:80px; text-align:center;">
-          Developed with 🎮🕹️👾 by 
+          Developed by 
           <a href="https://github.com/Tushar-CYL">Tushar</a>
           <a href="https://github.com/Tushar-CYL">Aritra</a>
           <a href="https://github.com/Tushar-CYL">Anuj</a>
