@@ -101,7 +101,7 @@ from PIL import Image
 import google.generativeai as genai
 
 # Configure Gemini API
-GOOGLE_API_KEY = 'AIzaSyAhPdM6jGrv-CTRuI6tqOrd4qXmyObJnpY'  # Replace with your API key
+GOOGLE_API_KEY = 'AIzaSyATZ0NDoTweYu3S3KQBlLBo0PljHvViK30'  # Replace with your API key
 genai.configure(api_key=GOOGLE_API_KEY)
 
 def convert_pdf_to_image(pdf_file):
