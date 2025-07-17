@@ -47,10 +47,6 @@ cd TalentTrack
 python3 -m venv env
 source env/bin/activate  # On Windows use `env\Scripts\activate`
 
-Resources
-Krish Naik - YouTube: Great tutorials on machine learning and deep learning concepts.
-Streamlit Documentation: Official Streamlit documentation for building web applications.
-LinkedIn: Connect with industry professionals for guidance and insights.
 
 Usage
 Login/Register: Use the app to create an account or log in as an existing user.
